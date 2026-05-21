@@ -295,6 +295,55 @@ Uso de la mascota: stickers, merchandise, posts de RRSS. Puede aparecer en mater
 
 ---
 
+## 09 — Estética retro / Windows-95 en slides
+
+El brandbook (capítulos [01]–[08]) usa marcos de ventana estilo Windows-95 como elemento de identidad central. El `slide-generator` reproduce este patrón en tres tipos de slide:
+
+- **`title`** (portada de clase): tres marcos pixel-art en la mitad derecha sobre fondo púrpura, conectados por un squiggle amarillo. Mismo lenguaje visual que la portada del brandbook.
+- **`section`** (divisor de capítulo): fondo navy + marco pixel-art grande + label `[ 0N ] / NOMBRE DE SECCIÓN` + composición secundaria con squiggle amarillo y letra "A" decorativa. Espejo directo de las páginas de divisor del brandbook ([01] COLORES, [02] TIPOGRAFÍAS, etc.).
+- **`plan-b`** (Plan B para charla inspiracional): ventana modal Windows-95 con barra de título roja "ALERTA · PLAN B", botón `¡ OK !` rosa, lista de pasos numerados con cuadrados rosa.
+
+**Cuándo usar `section`:** entre la cátedra (Explain) y la práctica autónoma (Elaborate), o antes de la mujer STEAM (Evaluate). No abusar — un `section` por clase es suficiente.
+
+## 10 — Iconografía kawaii oficial
+
+El brandbook (§06) define una iconografía propia que reemplaza a Font Awesome:
+
+| Ícono | Color | Uso pedagógico |
+|-------|-------|----------------|
+| Bombilla 💡 | Teal `#6FD0D8` | Engage / pregunta gancho / idea |
+| Calculadora 🧮 | Rojo `#FC3535` | Cálculo / programación / matemáticas |
+| Matraz 🧪 | Rosa `#FBD1E9` | Ciencias / experimentación |
+| Globo terráqueo 🌐 | Verde `#05A175` | Tecnología / impacto / contexto |
+| Estrella ✦ | Amarillo `#FDCA36` | Acento decorativo / destacado |
+| Check ✓ | Verde `#05A175` | Confirmación / éxito |
+| Exclamación ⚠ | Rojo `#FC3535` | Alerta / error / atención |
+| Cita " " | Amarillo `#FDCA36` | Citas / quote de mujer STEAM |
+| Objetivo ◎ | Púrpura `#6B32ED` | Objetivos de aprendizaje |
+| Herramientas 🛠 | Púrpura `#6B32ED` | Práctica / actividad / hacer |
+
+Trazo 2pt, puntas redondeadas, estilo simple. En el generador se invocan con su nombre kebab-case (`icon: "lightbulb"`). Los iconos Font Awesome legacy (`code`, `sitemap`, `arrow`, `puzzle`, `search`, `file`, `diagram`) están **deprecated** — no usar en slides nuevas.
+
+## 11 — Tabla de combinaciones legibles (brandbook §01)
+
+El brandbook clasifica cada combinación color-texto sobre color-fondo con la notación `[X, Y, Z]`:
+
+- **X**: legible para texto ≤17pt (0 = no, 1 = sí)
+- **Y**: legible para texto ≥18pt o ≥14pt negrita (0 = no, 1 = sí)
+- **Z**: legible para íconos / gráficos (0 = no, 1 = sí)
+
+**Combos seguras `[1,1,1]`** (texto de cualquier tamaño):
+- Blanco sobre Púrpura, Navy, Azul, Verde, Rojo
+- Navy sobre Blanco, Amarillo, Rosa, Teal
+
+**Combos `[0,1,1]`** (solo texto grande ≥18pt o íconos):
+- Púrpura sobre Blanco
+- Verde sobre Blanco
+- Azul sobre Blanco
+- Rosa sobre Teal / Gris
+
+El `slide-generator` mantiene una tabla interna de estas combinaciones y emite warning si detecta texto ≤17pt sobre una combinación no `[1,_,_]`.
+
 ## Fuente primaria
 
-Brandbook Niñas Pro 2022 — archivo `Brandbook_Niñas_Pro_2022.pdf`.
+Brandbook Niñas Pro 2022 — archivo `Brandbook Niñas Pro 2022.pdf` en la raíz del repo.

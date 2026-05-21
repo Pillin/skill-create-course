@@ -71,11 +71,30 @@ Every slide must include these labeled fields:
 
 ## Mandatory slides in every class
 
-Every class must include:
-- **An Engage slide (Slide 01 or 02):** a hook question or problem connected to students' experience.
-- **A live demo or exploration slide:** students see or attempt something before the full explanation.
-- **A STEAM woman slide:** introduces the featured woman. Placed in the second half of the lecture (after Explain, before Elaborate). Includes: name, dates, area, country/context, and the explicit connection to today's content.
-- **A closing slide:** names what was learned, and bridges explicitly to the next class.
+Every class must include the following slides (matching the `slide-generator` type names):
+
+| # | Type | Required content |
+|---|------|------------------|
+| 1 | `title` | Class number, title, **and poetic tagline** (see `tone-and-narrative-guide.md`). |
+| 2 | `bridge` | "LO QUE YA SABES" (from previous class) + "LO QUE VIENE HOY" (today's content) in two columns. **Non-negotiable except for class 01.** This is the narrative connector between classes. |
+| 3 | `engage` | A hook question or problem connected to students' experience. **Never a cold-lecture content slide.** |
+| 4 | `objectives` | 3–5 learning objectives using Bloom's observable action verbs + **warm closing message** ("Si al final puedes hacer estas cuatro cosas, la clase fue exitosa"). |
+| — | `analogy` | **At least one per class.** Concrete analogy from daily life (VIDA REAL ↔ TÉRMINO TÉCNICO) for the hardest concept. This is where the slide stops feeling like a textbook. |
+| — | `manual-trace` (only for programming courses) | At least one variable-state tracing slide before the first `code` slide — UDL adaptation + pedagogical standard. |
+| — | `steam` | The featured woman of the class. Second half of the lecture, before `closing`. Name, dates, area, context, explicit content connection. |
+| — | `reflection` | Exercise 10 prompt (written reflection). **Non-negotiable.** Always present, always at the end of the Evaluate phase. |
+| N-1 | `bridge` (forward) | "Lo que viene…" preview of next class. Closes the narrative loop. |
+| last | `closing` | Three sections: `Hoy aprendimos` / `Próxima clase` / `Tarea`. |
+
+For classes with inspirational talks (Clases 3, 5, 9 in standard Niñas Pro programs), also include a `plan-b` slide (hidden from regular flow, projected only if the guest cancels).
+
+**Recommended additional types** (use when the content calls for them):
+- `pull-quote` — a single poetic phrase on a colored background. Use to set up a concept or to break visual rhythm.
+- `comparison` — "sin X / con X" or "antes / después" side by side. Useful for showing why the new technique matters.
+- `anatomy` — break a structure into 4 labeled parts (e.g. parts of a function: TIPO RETORNO / NOMBRE / PARÁMETROS / RETORNO).
+- `try-it` — "Inténtalo tú" invitation before the practice block. Warm transition, not a cold exercise list.
+
+See `tone-and-narrative-guide.md` for the full rules on bridges, taglines, analogies, subtitles, and Chilean naming conventions. See `.agents/skills/skill-slide-generator/SKILL.md` for the parameter shape of each type.
 
 ---
 
@@ -126,6 +145,22 @@ For classes where 60 minutes are given to an external guest:
 - The STEAM woman slide serves as the warm-up for the talk.
 
 ---
+
+## 5E phase → slide-generator types
+
+When generating the actual `.pptx`, map each 5E phase to one of the available slide types from `.agents/skills/skill-slide-generator/SKILL.md`:
+
+| 5E Phase | Slide types from the generator |
+|----------|-------------------------------|
+| **Engage** | `engage` (hook question — slide 02, immediately after `title`). |
+| **Explore** | `activity`, `error-code`, `manual-trace` (students attempt or trace before being told). |
+| **Explain** | `content`, `definition`, `pillars`, `code`, `flowchart`, `reference` (formal concept after exploration). |
+| **Elaborate** | `activity`, `steps`, `code` applied to a new context (not repeating the demo). |
+| **Evaluate** | `kahoot`, `steam`, `reflection`, `rubric`, `closing`. |
+
+Structural slides (no 5E phase): `title`, `section` (chapter divider), `objectives`, `plan-b`.
+
+The generator runs `validateSlideSequence` automatically and emits warnings if the sequence violates these rules (no Engage immediately after Title, no Objectives, no STEAM, no Reflection, STEAM after Closing, more than 5 visible lines on a content slide).
 
 ## Bloom's mapping guidance for slides
 

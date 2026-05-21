@@ -22,7 +22,8 @@ Design by default for Niñas Pro: girls and young women in Chile, usually betwee
 - Always wait for explicit user approval before generating class materials.
 - Never assume missing critical information — always ask.
 - Do not generate initial or final evaluations; create only `assessment-inputs.md` for a separate evaluation skill.
-- Generate Markdown outputs for all text files. Create actual visual slides (via Canva or equivalent) when possible.
+- Generate Markdown outputs for all text files. Generate actual `.pptx` visual slides using the local `slide-generator` skill (see `.agents/skills/skill-slide-generator/SKILL.md`) — never just a Markdown brief. Read the slide-generator SKILL.md before coding the slides, use `buildClassSkeleton` as the starting point, and resolve every warning from `validateSlideSequence` before considering the class done.
+- **Apply `references/tone-and-narrative-guide.md` to every class.** Empowering tone is non-negotiable: bridge slides connecting each class to the previous and next, poetic tagline on the cover, at least one human analogy per class, poetic subtitles, warm closing on objectives, real Chilean names in examples, code comments with personality. Validate against the reference example `Clase-09-Funciones.pptx` (project root) before declaring a class done.
 - Deliver the final course as a compressed `.zip` folder.
 - Use reliable sources only. Do not invent sources.
 - Use APA 7 for all references.
@@ -82,7 +83,8 @@ After approval, generate all files class by class, in order. For each file type,
 | File | Reference |
 |------|-----------|
 | `00-class-overview.md` | `references/course-output-guide.md` |
-| `01-slides.md` + visual presentation | `references/slides-guide.md` |
+| `01-slides.md` (script + brief) | `references/slides-guide.md` |
+| `01-slides.pptx` (visual artifact) | `references/slides-guide.md` + `.agents/skills/skill-slide-generator/SKILL.md` |
 | `02-kahoot.md` | `references/kahoot-guide.md` |
 | `03-exercises.md` | `references/exercises-guide.md` |
 | `04-glossary.md` | `references/glossary-guide.md` |
@@ -96,6 +98,7 @@ After approval, generate all files class by class, in order. For each file type,
 | `full-glossary.md` | `references/glossary-guide.md` |
 
 For pedagogical framework application in any file: `references/pedagogical-frameworks-guide.md`.
+For tone, narrative continuity between classes, analogies, and warm language: `references/tone-and-narrative-guide.md`.
 For time distribution: `references/time-distribution-guide.md`.
 For technology-specific exercise design: `references/technology-guide.md`.
 For STEAM woman selection: `references/steam-woman-guide.md` + `references/steam-women-registry.md`.
@@ -115,6 +118,7 @@ course-name/
 ├── class-01/
 │   ├── 00-class-overview.md
 │   ├── 01-slides.md          ← script + visual creation brief
+│   ├── 01-slides.pptx        ← visual artifact (generado con slide-generator)
 │   ├── 02-kahoot.md
 │   ├── 03-exercises.md
 │   ├── 04-glossary.md
