@@ -62,6 +62,22 @@ Incorporating PatagonIA (Chile), Sabiá (Brazil), and Amazônia IA into early cl
 
 ---
 
+## Robótica para Competencias ROV Aplicadas (2026)
+
+### Si el programa fuente nombra una herramienta profesional pesada, NO asumir que es viable en aula
+El programa nombraba el **UUV Simulator** (ROS + Gazebo). Es la referencia profesional, pero instalarlo en ~30 laptops de adolescentes es inviable. Solución: construir un **simulador de aula propio en Python puro** (`rovsim/`) que implementa la MISMA API conceptual (comandar empuje, leer sensores, cámara, waypoints, detección de color con OpenCV real) y corre en cualquier laptop con `pip install numpy opencv-python`. La herramienta profesional y el ROV físico quedan como el "mundo real" al que se apunta, con un puente explícito y honesto documentado en `technical-setup.md` (tabla `rovsim` ↔ ROS/Gazebo/ROV físico). **How to apply:** para cualquier curso técnico hands-on, decidir la plataforma EJECUTABLE antes de generar ejercicios; si la del programa es pesada, construir un wrapper/simulador liviano que implemente su API.
+
+### La generación multiagente de primera pasada es pedagógicamente completa pero técnicamente NO ejecutable
+Los subagentes produjeron clases con excelente estructura 5E/Bloom/DUA/tono, pero el código de los ejercicios usaba una **API inventada e inconsistente** (`rov.set_velocity` en una clase, `rov.set_thrust_z`/`set_yaw_rate` en otra) y fuentes de cámara incompatibles entre sí (un `rospy.Subscriber` a un topic de ROS en C6, `cv2.VideoCapture(0)` en C7, `cv2.imread("foo.jpg")` en otra). Nada de eso corría. **Lección:** cuando el curso es técnico, o se fija la API ANTES de generar, o se reconcilia después: (1) construir el simulador para que implemente la unión de los métodos que los agentes inventaron (con alias), y (2) barrer y reemplazar todas las fuentes de cámara por una sola (`rov.get_camera_frame()`). Verificar con un `selftest` ejecutable real.
+
+### El usuario detectó "superficialidad" — la profundidad vive en los apuntes, no en las slides
+Tras la primera pasada, la dueña del curso preguntó si no estaba "súper superficial". Tenía razón en parte: las slides son necesariamente delgadas. Solución: agregar `08-apuntes.md` por clase (1.500–2.600 palabras de teoría rigurosa pero accesible: control PID, hidrodinámica con Arquímedes, visión por computador, brecha sim→real, máquinas de estado) con ejemplos resueltos y referencias APA 7. **How to apply:** para cursos técnicos, ofrecer desde el inicio un material de lectura de fondo por clase además de las slides; el `01-slides.md` no carga la profundidad conceptual.
+
+### Verificación honesta antes de declarar terminado
+Cuando se generan ~100 archivos vía subagentes, leer los resúmenes NO basta: hay que abrir el contenido real (aquí, leer los ejercicios reveló la API ficticia) y, si hay código, EJECUTARLO. Construir un `selftest` (`python -m rovsim.selftest`) que corra los patrones reales del curso (PID, profundidad, giro, cámara+OpenCV) y exigir 4/4 antes de cerrar.
+
+---
+
 ## Cross-course patterns
 
 ### The 10-class + 2-ceremony format
