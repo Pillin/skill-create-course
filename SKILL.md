@@ -91,6 +91,7 @@ After approval, generate all files class by class, in order. For each file type,
 | `05-steam-woman.md` | `references/steam-woman-guide.md` |
 | `06-preparation-checklist.md` | `references/course-output-guide.md` |
 | `07-quality-check.md` | `references/quality-guide.md` |
+| `08-apuntes.md` | `references/apuntes-guide.md` |
 | `facilitation-guide.md` | `references/facilitation-guide.md` |
 | `assessment-inputs.md` | `references/assessment-inputs-guide.md` |
 | `visual-identity-guide.md` | `references/visual-identity-guide.md` |
@@ -99,6 +100,7 @@ After approval, generate all files class by class, in order. For each file type,
 
 For pedagogical framework application in any file: `references/pedagogical-frameworks-guide.md`.
 For tone, narrative continuity between classes, analogies, and warm language: `references/tone-and-narrative-guide.md`.
+For student-facing reading material and worked examples: `references/apuntes-guide.md`.
 For time distribution: `references/time-distribution-guide.md`.
 For technology-specific exercise design: `references/technology-guide.md`.
 For STEAM woman selection: `references/steam-woman-guide.md` + `references/steam-women-registry.md`.
@@ -124,7 +126,8 @@ course-name/
 │   ├── 04-glossary.md
 │   ├── 05-steam-woman.md
 │   ├── 06-preparation-checklist.md
-│   └── 07-quality-check.md
+│   ├── 07-quality-check.md
+│   └── 08-apuntes.md
 └── class-n/
     └── ...
 ```
